@@ -1,0 +1,11 @@
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+install: pip install . codecov pytest pytest-cov pylint
+script:
+- py.test --cov flatsplode
+- pylint flatsplode
+after_success: codecov
