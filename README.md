@@ -9,18 +9,17 @@ Flattening a JSON object squishes nested objects into a flat key-value dict.
 Ex.
 
 ```python
-{
+from flatsplode import flatten
+
+flatten({
   "fizz": {
     "buzz": {
       "jazz": "fuzz"
     }
   }
-}
-```
+}, expand=True)
 
-Becomes:
-
-```python
+# Returns...
 {
   "fizz.buzz.jazz": "fuzz"
 }
@@ -33,68 +32,46 @@ Exploding a JSON object yields a number of JSON objects for every list in the or
 Ex.
 
 ```python
-{
+from flatsplode import explode
+
+explode({
   "fizz": [
-    {
-      "jazz": "fuzz"
-    },
-    {
-      "wizz": "bang"
-    }
+    {"jazz": "fuzz"},
+    {"wizz": "bang"}
   ]
-}
-```
+}, expand=True)
 
-Becomes:
-
-```python
-[
-  {
-    'fizz': {
-      'jazz': 'fuzz'
-    }
-  },
-  {
-    'fizz': {
-      'wizz': 'bang'
-    }
-  }
-]
+# Returns...
+(
+  {"fizz": {"jazz": "fuzz"}},
+  {"fizz": {"wizz": "bang"}}
+)
 ```
 
 ## Flatsplode
 
-Flatsploding explodes the JSON object and flattens it.
+Flatsploding flattens, explodes, and flattens again a JSON object into all possible combinations.
 
 Ex.
 
 ```python
-{
+from flatsplode import flatsplode
+
+flatsplode({
   "fizz": {
     "buzz": [
-      {
-        "jazz": "fuzz"
-      },
-      {
-        "wizz": "bang"
-      }
+      {"jazz": "fuzz"},
+      {"wizz": "bang"}
     ]
   }
-}
-```
+}, expand=True)
 
-Becomes:
-
-```python
+# Returns....
 [
   {
-    'fizz.buzz': [
-      {
-        'jazz': 'fuzz'
-      },
-      {
-        'wizz': 'bang'
-      }
+    "fizz.buzz": [
+      {"jazz": "fuzz"},
+      {"wizz": "bang"}
     ]
   }
 ]

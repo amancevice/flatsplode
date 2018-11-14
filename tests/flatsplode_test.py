@@ -8,7 +8,7 @@ def test_explode():
         'fizz': ['buzz', 'jazz', 'fuzz'],
         'foo': 'bar',
     }
-    ret = list(flatsplode.explode(item))
+    ret = flatsplode.explode(item, expand=True)
     exp = [
         {'a': 'b', 'jar': 'bar', 'fizz': 'buzz', 'foo': 'bar'},
         {'a': 'b', 'jar': 'bar', 'fizz': 'jazz', 'foo': 'bar'},
@@ -34,7 +34,7 @@ def test_flatten():
         'empty': {
         },
     }
-    ret = flatsplode.flatten(item)
+    ret = flatsplode.flatten(item, expand=True)
     exp = {
         'fizz.buzz.jazz': 'fuzz',
         'empty': None,
@@ -46,68 +46,63 @@ def test_flatsplode():
     item = {
         'a': 'b',
         'jar': ['bar', 'car'],
-        'fizz': [
-            {'buzz': 1, 'jazz': 2, 'fuzz': 3},
-            {'buzz': 2, 'jazz': 3, 'fuzz': 4},
-            {'buzz': 3, 'jazz': 4, 'fuzz': 5},
-        ],
-        'foo': 'bar',
+        'foo': {
+            'fizz': [
+                {'buzz': 1, 'jazz': 2, 'fuzz': 3},
+                {'buzz': 2, 'jazz': 3, 'fuzz': 4},
+                {'buzz': 3, 'jazz': 4, 'fuzz': 5},
+            ],
+        },
     }
-    ret = list(flatsplode.flatsplode(item))
+    ret = flatsplode.flatsplode(item, expand=True)
     exp = [
         {
             'a': 'b',
             'jar': 'bar',
-            'fizz.buzz': 1,
-            'fizz.jazz': 2,
-            'fizz.fuzz': 3,
-            'foo': 'bar',
+            'foo.fizz.buzz': 1,
+            'foo.fizz.jazz': 2,
+            'foo.fizz.fuzz': 3,
         },
         {
             'a': 'b',
             'jar': 'bar',
-            'fizz.buzz': 2,
-            'fizz.jazz': 3,
-            'fizz.fuzz': 4,
-            'foo': 'bar',
+            'foo.fizz.buzz': 2,
+            'foo.fizz.jazz': 3,
+            'foo.fizz.fuzz': 4,
         },
         {
             'a': 'b',
             'jar': 'bar',
-            'fizz.buzz': 3,
-            'fizz.jazz': 4,
-            'fizz.fuzz': 5,
-            'foo': 'bar',
+            'foo.fizz.buzz': 3,
+            'foo.fizz.jazz': 4,
+            'foo.fizz.fuzz': 5,
         },
         {
             'a': 'b',
             'jar': 'car',
-            'fizz.buzz': 1,
-            'fizz.jazz': 2,
-            'fizz.fuzz': 3,
-            'foo': 'bar',
+            'foo.fizz.buzz': 1,
+            'foo.fizz.jazz': 2,
+            'foo.fizz.fuzz': 3,
         },
         {
             'a': 'b',
             'jar': 'car',
-            'fizz.buzz': 2,
-            'fizz.jazz': 3,
-            'fizz.fuzz': 4,
-            'foo': 'bar',
+            'foo.fizz.buzz': 2,
+            'foo.fizz.jazz': 3,
+            'foo.fizz.fuzz': 4,
         },
         {
             'a': 'b',
             'jar': 'car',
-            'fizz.buzz': 3,
-            'fizz.jazz': 4,
-            'fizz.fuzz': 5,
-            'foo': 'bar',
+            'foo.fizz.buzz': 3,
+            'foo.fizz.jazz': 4,
+            'foo.fizz.fuzz': 5,
         }
     ]
     ret.sort(key=lambda x: (
-        x['jar'], x['fizz.buzz'], x['fizz.jazz'], x['fizz.fuzz']
+        x['jar'], x['foo.fizz.buzz'], x['foo.fizz.jazz'], x['foo.fizz.fuzz']
     ))
     exp.sort(key=lambda x: (
-        x['jar'], x['fizz.buzz'], x['fizz.jazz'], x['fizz.fuzz']
+        x['jar'], x['foo.fizz.buzz'], x['foo.fizz.jazz'], x['foo.fizz.fuzz']
     ))
     assert ret == exp
