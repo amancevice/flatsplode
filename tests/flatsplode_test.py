@@ -1,4 +1,6 @@
-import flatsplode
+from flatsplode import explode
+from flatsplode import flatsplode
+from flatsplode import flatten
 
 
 def test_explode():
@@ -8,7 +10,7 @@ def test_explode():
         'fizz': ['buzz', 'jazz', 'fuzz'],
         'foo': 'bar',
     }
-    ret = flatsplode.explode(item, expand=True)
+    ret = list(explode(item))
     exp = [
         {'a': 'b', 'jar': 'bar', 'fizz': 'buzz', 'foo': 'bar'},
         {'a': 'b', 'jar': 'bar', 'fizz': 'jazz', 'foo': 'bar'},
@@ -34,7 +36,7 @@ def test_flatten():
         'empty': {
         },
     }
-    ret = flatsplode.flatten(item, expand=True)
+    ret = flatten(item)
     exp = {
         'fizz.buzz.jazz': 'fuzz',
         'empty': None,
@@ -48,61 +50,171 @@ def test_flatsplode():
         'jar': ['bar', 'car'],
         'foo': {
             'fizz': [
-                {'buzz': 1, 'jazz': 2, 'fuzz': 3},
-                {'buzz': 2, 'jazz': 3, 'fuzz': 4},
-                {'buzz': 3, 'jazz': 4, 'fuzz': 5},
+                {'buzz': 1, 'jazz': 2, 'fuzz': 3, 'array': [9, 8, 7]},
+                {'buzz': 2, 'jazz': 3, 'fuzz': 4, 'array': [9, 8, 7]},
+                {'buzz': 3, 'jazz': 4, 'fuzz': 5, 'array': [9, 8, 7]},
             ],
         },
     }
-    ret = flatsplode.flatsplode(item, expand=True)
+    ret = list(flatsplode(item))
     exp = [
         {
-            'a': 'b',
-            'jar': 'bar',
-            'foo.fizz.buzz': 1,
-            'foo.fizz.jazz': 2,
-            'foo.fizz.fuzz': 3,
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "bar"
         },
         {
-            'a': 'b',
-            'jar': 'bar',
-            'foo.fizz.buzz': 2,
-            'foo.fizz.jazz': 3,
-            'foo.fizz.fuzz': 4,
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "bar"
         },
         {
-            'a': 'b',
-            'jar': 'bar',
-            'foo.fizz.buzz': 3,
-            'foo.fizz.jazz': 4,
-            'foo.fizz.fuzz': 5,
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "bar"
         },
         {
-            'a': 'b',
-            'jar': 'car',
-            'foo.fizz.buzz': 1,
-            'foo.fizz.jazz': 2,
-            'foo.fizz.fuzz': 3,
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "bar"
         },
         {
-            'a': 'b',
-            'jar': 'car',
-            'foo.fizz.buzz': 2,
-            'foo.fizz.jazz': 3,
-            'foo.fizz.fuzz': 4,
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "bar"
         },
         {
-            'a': 'b',
-            'jar': 'car',
-            'foo.fizz.buzz': 3,
-            'foo.fizz.jazz': 4,
-            'foo.fizz.fuzz': 5,
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "bar"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "bar"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "bar"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "bar"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 1,
+            "foo.fizz.fuzz": 3,
+            "foo.fizz.jazz": 2,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 2,
+            "foo.fizz.fuzz": 4,
+            "foo.fizz.jazz": 3,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 9,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 8,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "car"
+        },
+        {
+            "a": "b",
+            "foo.fizz.array": 7,
+            "foo.fizz.buzz": 3,
+            "foo.fizz.fuzz": 5,
+            "foo.fizz.jazz": 4,
+            "jar": "car"
         }
     ]
     ret.sort(key=lambda x: (
-        x['jar'], x['foo.fizz.buzz'], x['foo.fizz.jazz'], x['foo.fizz.fuzz']
+        x['jar'],
+        x['foo.fizz.array'],
+        x['foo.fizz.buzz'],
+        x['foo.fizz.jazz'],
+        x['foo.fizz.fuzz'],
     ))
     exp.sort(key=lambda x: (
-        x['jar'], x['foo.fizz.buzz'], x['foo.fizz.jazz'], x['foo.fizz.fuzz']
+        x['jar'],
+        x['foo.fizz.array'],
+        x['foo.fizz.buzz'],
+        x['foo.fizz.jazz'],
+        x['foo.fizz.fuzz'],
     ))
     assert ret == exp

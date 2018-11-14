@@ -4,57 +4,53 @@ flatsplode.
 import itertools
 
 
-def explode(item, expand=False):
+def explode(item):
     """ Explode JSON object with list values.
 
         :param dict item: Object to explode
-        :param bool expand: Flag to return list instead of generator
 
         :Example:
 
-        >>> explode({"fizz": ['buzz', 'jazz', 'fuzz']})
+        >>> explode({'fizz': ['buzz', 'jazz', 'fuzz']})
     """
-
-    def explodeiter(item):
-        """ Iterator helper. """
-        # Collect item values that are lists/tuples
-        lists = (
-            [(k, x) for x in v]
-            for k, v in item.items()
-            if isinstance(v, (list, tuple))
-        )
-        # Calculate combinations of values in each list
-        combos = map(dict, itertools.product(*lists))
-        # Yield each combination
-        for combo in combos:
-            xitem = item.copy()
-            xitem.update(combo)
-            yield xitem
-
-    return explodeiter(item) if not expand else list(explodeiter(item))
+    # Collect item values that are lists/tuples
+    lists = (
+        [(k, x) for x in v]
+        for k, v in item.items()
+        if isinstance(v, (list, tuple))
+    )
+    # Calculate combinations of values in each list
+    combos = map(dict, itertools.product(*lists))
+    # Yield each combination
+    for combo in combos:
+        xitem = item.copy()
+        xitem.update(combo)
+        yield xitem
 
 
-def flatsplode(item, expand=False):
+def flatsplode(item):
     """ Explode & flatten JSON object with list values.
 
         :param dict item: Object to explode
-        :param bool expand: Flag to return list instead of generator
 
         :Example:
 
         >>> flatsplode({"fizz": [{'key': buzz'}, {'key': 'jazz'}]})
     """
-    flattened = dict(flatten(item))
-    exploded = explode(flattened)
-    flatsploded = (flatten(x, expand) for x in exploded)
-    return flatsploded if not expand else list(flatsploded)
+    for expl in explode(item):
+        flat = flatten(expl)
+        listvals = (x for x in flat.values() if isinstance(x, (list, tuple)))
+        if any(listvals):
+            for inner in flatsplode(flat):
+                yield inner
+        else:
+            yield flat
 
 
-def flatten(item, expand=False):
+def flatten(item):
     """ Flattens nested JSON object.
 
         :param dict item: Object to flatten
-        :param bool expand: Flag to return list instead of generator
 
         :Example:
 
@@ -82,4 +78,4 @@ def flatten(item, expand=False):
             else:
                 yield ('.'.join(parents + (key,)), val)
 
-    return iterkv(item) if not expand else dict(iterkv(item))
+    return dict(iterkv(item))

@@ -6,67 +6,101 @@
 
 Flatten/Explode JSON objects.
 
-## Flatten
+## Installation
 
-Flattening a JSON object squishes nested objects into a flat key-value dict.
-
-```python
-from flatsplode import flatten
-
-flatten({
-  "fizz": {
-    "buzz": {
-      "jazz": "fuzz"
-    }
-  }
-}, expand=True)
-
-# Returns...
-{
-  "fizz.buzz.jazz": "fuzz"
-}
+```bash
+pip install flatsplode
 ```
 
-## Explode
+## Usage
 
-Exploding a JSON object yields a number of JSON objects for every list in the original object.
+Use the `flatsplode()` function to recursively flatten and explode complex JSON objects.
 
-```python
-from flatsplode import explode
-
-explode({
-  "fizz": [
-    {"jazz": "fuzz"},
-    {"wizz": "bang"}
-  ]
-}, expand=True)
-
-# Returns...
-(
-  {"fizz": {"jazz": "fuzz"}},
-  {"fizz": {"wizz": "bang"}}
-)
-```
-
-## Flatsplode
-
-Flatsploding flattens, explodes, and flattens again a JSON object into all possible combinations.
+Import the `flatsplode` function:
 
 ```python
 from flatsplode import flatsplode
+```
 
-flatsplode({
-  "fizz": {
-    "buzz": [
-      {"jazz": "fuzz"},
-      {"wizz": "bang"}
-    ]
-  }
-}, expand=True)
+Create a sample object to flatsplode:
 
-# Returns....
+```python
+item = {
+    'id': '78e5b18c',
+    'keywords': [
+        'fizz',
+        'buzz'
+    ],
+    'attrs': [
+        {'name': 'color', 'value': 'green'},
+        {'name': 'size', 'value': 42},
+    ],
+    'deep': {
+        'nested': {
+            'keys': {
+                'fizz': 'buzz',
+                'jazz': 'fuzz',
+            }
+        }
+    }
+}
+```
+
+Calling `flatsplode(item)` will return a generator. Use `list()` to expand:
+
+
+```python
+list(flatsplode(item))
+
 [
-  {'fizz.buzz.jazz': 'fuzz'},
-  {'fizz.buzz.wizz': 'bang'}
+    {
+        'id': '78e5b18c',
+        'keywords': 'fizz',
+        'attrs.name': 'color',
+        'attrs.value': 'green',
+        'deep.nested.keys.fizz': 'buzz',
+        'deep.nested.keys.jazz': 'fuzz'
+    },
+    {
+        'id': '78e5b18c',
+        'keywords': 'fizz',
+        'attrs.name': 'size',
+        'attrs.value': 42,
+        'deep.nested.keys.fizz': 'buzz',
+        'deep.nested.keys.jazz': 'fuzz'
+    },
+    {
+        'id': '78e5b18c',
+        'keywords': 'buzz',
+        'attrs.name': 'color',
+        'attrs.value': 'green',
+        'deep.nested.keys.fizz': 'buzz',
+        'deep.nested.keys.jazz': 'fuzz'
+    },
+    {
+        'id': '78e5b18c',
+        'keywords': 'buzz',
+        'attrs.name': 'size',
+        'attrs.value': 42,
+        'deep.nested.keys.fizz': 'buzz',
+        'deep.nested.keys.jazz': 'fuzz'
+    }
 ]
+```
+
+Flatsploding is useful when converting objects to pandas DataFrame matrices:
+
+```python
+import pandas
+from flatsplode import flatsplode
+
+pandas.DataFrame(list(flatsplode(item))).set_index('id')
+```
+
+```
+         id attrs.name attrs.value deep.nested.keys.fizz deep.nested.keys.jazz keywords
+0  78e5b18c      color       green                  buzz                  fuzz     fizz
+1  78e5b18c       size          42                  buzz                  fuzz     fizz
+2  78e5b18c      color       green                  buzz                  fuzz     buzz
+3  78e5b18c       size          42                  buzz                  fuzz     buzz
 ```
