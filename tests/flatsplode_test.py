@@ -17,8 +17,10 @@ def test_explode():
         {'a': 'b', 'jar': 'car', 'fizz': 'jazz', 'foo': 'bar'},
         {'a': 'b', 'jar': 'car', 'fizz': 'fuzz', 'foo': 'bar'},
     ]
-    ret.sort(key=lambda x: x.items())
-    exp.sort(key=lambda x: x.items())
+    ret.sort(key=lambda x: (x['jar'], x['fizz']))
+    exp.sort(key=lambda x: (x['jar'], x['fizz']))
+    print(ret)
+    print(exp)
     assert ret == exp
 
 
@@ -102,6 +104,10 @@ def test_flatsplode():
             'foo': 'bar',
         }
     ]
-    ret.sort(key=lambda x: x.items())
-    exp.sort(key=lambda x: x.items())
+    ret.sort(key=lambda x: (
+        x['jar'], x['fizz.buzz'], x['fizz.jazz'], x['fizz.fuzz']
+    ))
+    exp.sort(key=lambda x: (
+        x['jar'], x['fizz.buzz'], x['fizz.jazz'], x['fizz.fuzz']
+    ))
     assert ret == exp
