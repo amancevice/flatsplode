@@ -1,6 +1,6 @@
 # Flatsplode
 
-[![build](https://travis-ci.org/amancevice/flatsplode.svg?branch=master)](https://travis-ci.org/amancevice/flatsplode)
+[![build](https://travis-ci.com/amancevice/flatsplode.svg?branch=master)](https://travis-ci.com/amancevice/flatsplode)
 [![codecov](https://codecov.io/gh/amancevice/flatsplode/branch/master/graph/badge.svg)](https://codecov.io/gh/amancevice/flatsplode)
 [![pypi](https://badge.fury.io/py/flatsplode.svg)](https://badge.fury.io/py/flatsplode)
 
