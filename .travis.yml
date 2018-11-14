@@ -12,6 +12,7 @@ after_success: codecov
 deploy:
   provider: pypi
   user: amancevice
+  skip_cleanup: true
   password:
     secure: wL9ROAmYefNBHAyp1LMU1ZjAubP+c4wUK15WsnOOFcko1rKus8UsAHy4h7rIL/K0FBoqmJZhYKCffVJuOJ/r2CRO01CXauT8oF/LWJQcWLUSFmHouqQQLA57zwrfh9IzM0EMSZaoAU3I83GfDdos3DMnNyIgMsAxIYRnk2BN3u4QOC5FaOnO1xQC7ijrwTSFO6VTAARdy2Iz/3vT/I6dBnwSSXzg3jJi6qa1KWLHCd+wTnZv3D+0vHub3D3Wyxajyok/oqaKiaWuOoetaXc2KMPqazh/GdA6m1zOfXjrP3HJl7lX3gBIDXvRF7m8Stht5DEqxTCkUQKnmSNjSRoequy0cMx2KWrQQgZaK/eze9dYq/6AuhyDq+rYp4ygigFe9BxW9iH8Z43/2/7RkQ1GDkt8ypdVeXCnnzLQ31czAGND7yeJdFLf5RT5tVP6WNeurD8a+MVORXp88IopT09Wv89n2xfR7ekV+DTqCBtA/2GbXMmWOuQi3s7+xgGaQEvEVPwjkGDmoNP8g+MpdR5m828zwHLxqtMNaGbBgg96+N4bJSKTPpQ/2GaE7OyRRHczzvdgCRg5Zi+KnL9gP4zSWc/YuPLakPHgYCg6XYr8uZG6Ev3S6N/Ne+VYFhDaKTt/ZzeUW/A5NaVPpaS9wJhg0ChbWbuGCg5VCvOupsXHmPc=
   on:
