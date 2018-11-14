@@ -66,11 +66,7 @@ flatsplode({
 
 # Returns....
 [
-  {
-    "fizz.buzz": [
-      {"jazz": "fuzz"},
-      {"wizz": "bang"}
-    ]
-  }
+  {'fizz.buzz.jazz': 'fuzz'},
+  {'fizz.buzz.wizz': 'bang'}
 ]
 ```
