@@ -35,7 +35,7 @@ def flatsplode(item):
 
         :Example:
 
-        >>> flatsplode({"fizz": [{'key': buzz'}, {'key': 'jazz'}]})
+        >>> flatsplode({'fizz': [{'key': buzz'}, {'key': 'jazz'}]})
     """
     for expl in explode(item):
         flat = flatten(expl)
@@ -54,7 +54,7 @@ def flatten(item):
 
         :Example:
 
-        >>> flatten({"fizz": {"buzz": {"jazz": "fuzz"}}})
+        >>> flatten({'fizz': {'buzz': {'jazz': 'fuzz'}}})
     """
 
     def iterkv(item, parents=()):
