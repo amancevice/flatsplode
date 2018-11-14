@@ -4,18 +4,20 @@ python:
 - '3.4'
 - '3.5'
 - '3.6'
-install: pip install . codecov mock pytest pytest-cov pylint
+install:
+- pip install . codecov mock pytest pytest-cov pylint
 script:
 - py.test --cov flatsplode
 - pylint flatsplode
-after_success: codecov
+after_success:
+- codecov
 deploy:
   provider: pypi
   user: amancevice
-  skip_cleanup: true
   password:
     secure: l854Oz3Sphnx5UAl0+w5zv9o8hPCc4yngaGCdcD6ZbApaMozMPg2qo0VUuTQheo/VVH592oxxcniPcC/+PlUPN7l4FyuEz7ZMP/+sRWnhJsfbY93Ci9sFXmb7q5kdTCyiBt2oKCt2IYZ7wSagFnPVLvfPxArqXD/duYoqKxlhbnsoA9T8pAOYnuFXg/PmqFMe7ZbO+WbMOvdp+wfRKtQtN7d+3Mhvd4vaM5erp30nxDldjafwsTe7V4YZH/qd3Db+J8k8KPrqhPEqNdy6fNXG6uoiULbydpPj0AQe0sEMtBvCs0RirnaGT/lpgSSNeumiwVJqwSI+Wr1q7RQ9QxgV9MRPPNqX28dz+gLkusi5wrapwSceLpA0g67OoV4sOMA4wbEELr6d8NYNEAVHysM1Lib3FS8twmqLPDi36QioQ2ftjr3gtF7cbdx27Jg58LEWX2KpT4Bdg5rmSiJcP4kGJRZy7HYOrymI++WmsQQ4b9EoThYhAuVGxuHKHaZJutHUGv3+MLxmKZc2N3PfVOa4bviQf0O3EPlJy2vTIdyLPD7uJvVvaSwXLS0xCnO8L24GEe7Fdm478SEysH/Drsc0g1dBpteAB8iMNWBdFMhtR0sVoGvUPdiXvD1yQUYp5GRnlDM292+GnzFf2kHOFHHVQAI2Eq7153igPydCKztqMo=
   on:
-    tags: true
     distributions: sdist bdist_wheel
+    python: '3.6'
     repo: amancevice/flatsplode
+    tags: true
