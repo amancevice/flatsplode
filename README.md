@@ -10,8 +10,6 @@ Flatten/Explode JSON objects.
 
 Flattening a JSON object squishes nested objects into a flat key-value dict.
 
-Ex.
-
 ```python
 from flatsplode import flatten
 
@@ -33,8 +31,6 @@ flatten({
 
 Exploding a JSON object yields a number of JSON objects for every list in the original object.
 
-Ex.
-
 ```python
 from flatsplode import explode
 
@@ -55,8 +51,6 @@ explode({
 ## Flatsplode
 
 Flatsploding flattens, explodes, and flattens again a JSON object into all possible combinations.
-
-Ex.
 
 ```python
 from flatsplode import flatsplode
