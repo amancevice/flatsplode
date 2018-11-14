@@ -12,9 +12,10 @@ after_success: codecov
 deploy:
   provider: pypi
   user: amancevice
+  skip_cleanup: true
   password:
     secure: EVHSsGQ5YlDwaBNHCcA4NsrVOqE5XbtO07AmjINroOaq5VtJXQrqtFcu74Wr9lVyJQs/wBpWElBOZvzKSDxJcNpcfcqwjyEX+QLVq7M24PAK0WChem6GQvYpUUQeO3+ZC5zfssg3avnJu9OzRCrCdG42OcgcTtuGvtGaMO8Zgo0oQWKbAgG1JePxSajL8IWpOQr9Pye6fSUey5lIrD92sw3jJ9VGQBIc2yasUuzsZdeYQ83TU4FwUNma3gebkFgXsHFbcYi/UqjVAXdXt0oHRbGmXBkdJikPI7cLcCFXX1tj/U/dS+z6XxkMnQbR/UtOyJ3f3O6MuraxpLF/+0kf7b44LXvBqpbCuWVJaS99iduzeXhNljnu5g5Xda6UpjmUvwlei/d3m0GrhQ4w6XeZCehBgd3sHaJhJsM/fFrpaOOodxXAK3AkHj/kITkf5X7W2yT7Y+k4jFDB/33ILcXvwMhB84jzAx76edYb/i1vlLd8igfWtyCX1gXFBKt/YlRQTSWytal0gu0Poy6/uE+p0rQLIQGEJMDbOSYpWCOWKFgnYoAc7Oa+aXBxyfjMDyDG7WgqsmAlVVoLU5IdtOIlVmwwMC1pLyP/eVHa6YXGhIiqzeD1T8nDcXa37O7ofuuKyVLj9Ro0uZKiIjqOx5uITDiNgTGOelGfa0We+1rOFlM=
   on:
-    tags: true
     distributions: sdist bdist_wheel
     repo: amancevice/flatsplode
+    tags: true
