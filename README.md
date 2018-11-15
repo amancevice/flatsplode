@@ -94,7 +94,7 @@ Flatsploding is useful when converting objects to pandas DataFrame matrices:
 import pandas
 from flatsplode import flatsplode
 
-pandas.DataFrame(list(flatsplode(item))).set_index('id')
+pandas.DataFrame(list(flatsplode(item)))
 ```
 
 ```
