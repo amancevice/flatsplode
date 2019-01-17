@@ -5,7 +5,7 @@ python:
 - '3.5'
 - '3.6'
 install:
-- pip install . codecov mock pytest pytest-cov pylint
+- pip install . codecov mock pytest pytest-cov pylint --upgrade
 script:
 - py.test --cov flatsplode
 - pylint flatsplode
