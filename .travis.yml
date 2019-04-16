@@ -1,18 +1,17 @@
 language: python
 python:
-- '2.7'
-- '3.4'
 - '3.5'
 - '3.6'
+- 3.7-dev
 install:
-- pip install . codecov mock pytest pytest-cov pylint --upgrade
+- pip install -r requirements.txt -r requirements-dev.txt
 script:
-- py.test --cov flatsplode
 - pylint flatsplode
+- py.test
 after_success:
 - codecov
 deploy:
-  provider: pypi
+- provider: pypi
   user: amancevice
   password:
     secure: d7xe52q0OEDkbbuhdceUyhfefj7yOL/bjF4MZ5zhyVqoYDF6jvbreLWVBlxgyQiuJLPNLnkxwrYvIXzKnkkranhd2qF1PHsvREy5G05xxsWM80R+lkw10YgcDzl7OFx0QUfW/5T5VWVu76966fIDSkxlxqLFVTPEqOBH/+kLCBuMqhiplKPNJNl7E2BFLth2RabjWh0e0GM+GHgCrlhc0hdW631sPcddsX8nC8tHKQsnVCEY7FgmpaT9IU7cNeLjEXD5J8OfGkmY+tv5wlCv+SwF09oYPJ46jHXTIkl3Z57ti9gx2UWx/xwdHT+MRdkDN1+C3feCy69Owz3Jfpa+2rGaha4v+awNvMBc0+xljSuk5eWzk0439cMC/Us9X7Vqb8a/rS49YQu9Bb8aW6hArQWPJaoUysT/MOMpMHS+yKa9Z3kkv+53vb0NkqQV0+ofdgi5anGGB9IxL1etmTQBEUZmmIQ82SiHzHVejy5E3XTdYqL2YG+NNs8b3yQJbhe43DZ+DZ0z7kDQf3AqjspGpiGTV82uPqY2zGpZAVlKDbIDMFMVPpG6bQQzGU8IkA4h7QS3L5gHXGEp8Pf+U32yyR5rIJgWtAKpceqTrdFh6HYAbnVycTSynYzeE4zhBnKsaN75rwxn1DKgoZyGFL7gKi2CbcLsoPXOfukUumYqitM=
