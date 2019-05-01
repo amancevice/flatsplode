@@ -5,7 +5,6 @@ setup(
     author='amancevice',
     author_email='smallweirdnumber@gmail.com',
     description='Flatten/explode JSON objects.',
-    install_requires=requirements('requirements.txt'),
     name='flatsplode',
     packages=find_packages(exclude=['tests']),
     setup_requires=['setuptools_scm'],
