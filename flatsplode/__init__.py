@@ -1,6 +1,6 @@
 """
 flatsplode
 """
-from .flatsplode import explode
-from .flatsplode import flatsplode
-from .flatsplode import flatten
+from .flatsplode import explode     # noqa: F401
+from .flatsplode import flatsplode  # noqa: F401
+from .flatsplode import flatten     # noqa: F401
