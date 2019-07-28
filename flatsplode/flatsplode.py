@@ -3,6 +3,8 @@ flatsplode.
 """
 import itertools
 
+LIST_TYPES = (list, tuple)
+
 
 def explode(item):
     """ Explode JSON object with list values.
@@ -39,10 +41,9 @@ def flatsplode(item):
     """
     for expl in explode(item):
         flat = flatten(expl)
-        listvals = (x for x in flat.values() if isinstance(x, (list, tuple)))
-        if any(listvals):
-            for inner in flatsplode(flat):
-                yield inner
+        items = filter(lambda x: isinstance(x, LIST_TYPES), flat.values())
+        if any(items):
+            yield from flatsplode(flat)
         else:
             yield flat
 
@@ -56,26 +57,24 @@ def flatten(item):
 
         >>> flatten({'fizz': {'buzz': {'jazz': 'fuzz'}}})
     """
-
-    def iterkv(item, parents=()):
-        """ Iterate over key/values of item recursively.
-
-            :param dict item: Item to flatten
-            :param tuple parents: Running tuple of parent keys
-        """
-        for key, val in item.items():
-
-            # Recurse into nest
-            if isinstance(val, dict) and val:
-                for ikey, ival in iterkv(val, parents + (key,)):
-                    yield (ikey, ival)
-
-            # Yield key: None for empty nest
-            elif val == {}:
-                yield (key, None)
-
-            # Yield base case
-            else:
-                yield ('.'.join(parents + (key,)), val)
-
     return dict(iterkv(item))
+
+
+def iterkv(item, parents=()):
+    """ Iterate over key/values of item recursively.
+
+        :param dict item: Item to flatten
+        :param tuple parents: Running tuple of parent keys
+    """
+    for key, val in item.items():
+        path = parents + (key,)  # Assemble path
+        key = '.'.join(path)     # Dot-join path
+        val = val or None        # Yield None for empty nest
+
+        # Yield base case
+        if not isinstance(val, dict):
+            yield (key, val)
+
+        # Recurse into nested dict
+        else:
+            yield from iterkv(val, path)
