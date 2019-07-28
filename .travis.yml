@@ -9,11 +9,12 @@ before_install:
 - chmod +x ./cc-test-reporter
 - ./cc-test-reporter before-build
 install:
-- pipenv install --dev
+- pipenv lock -r > requirements.txt
+- pipenv lock -r -d > requirements-dev.txt
+- pip install -r requirements.txt -r requirements-dev.txt
 script:
-- pipenv run flake8
-- pipenv run py.test
-- pipenv run coverage html
+- flake8
+- py.test
 after_script:
 - ./cc-test-reporter after-build --exit-code ${TRAVIS_TEST_RESULT}
 deploy:
