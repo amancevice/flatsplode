@@ -13,6 +13,7 @@ install:
 script:
 - pipenv run flake8
 - pipenv run py.test
+- pipenv run coverage html
 after_script:
 - ./cc-test-reporter after-build --exit-code ${TRAVIS_TEST_RESULT}
 deploy:
