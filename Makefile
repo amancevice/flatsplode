@@ -12,4 +12,3 @@ upload: $(SDIST)
 
 $(SDIST):
 	python setup.py sdist
-
