@@ -7,7 +7,7 @@ with open('README.md', 'r') as readme:
 setup(
     author='amancevice',
     author_email='smallweirdnumber@gmail.com',
-    description='Flatten/explode JSON objects.',
+    description='Flatten/explode JSON objects',
     name='flatsplode',
     long_description=long_description,
     long_description_content_type="text/markdown",
