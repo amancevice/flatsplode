@@ -9,5 +9,6 @@ ipdb = "*"
 ipython = "*"
 pytest = "*"
 pytest-cov = "*"
+twine = "*"
 
 [packages]

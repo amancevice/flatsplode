@@ -1,8 +1,15 @@
-.PHONY: clean
+SDIST := dist/$(shell python setup.py --fullname).tar.gz
 
-Pipfile.lock:
-	pipenv lock -r
+.PHONY: default clean upload
+
+default: $(SDIST)
 
 clean:
-	-pipenv --rm
-	-rm Pipfile.lock
+	rm -rf dist
+
+upload: $(SDIST)
+	twine upload $<
+
+$(SDIST):
+	python setup.py sdist
+
