@@ -10,7 +10,7 @@ setup(
     description='Flatten/explode JSON objects',
     name='flatsplode',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type='text/markdown',
     packages=find_packages(exclude=['tests']),
     python_requires='>= 3.5',
     setup_requires=['setuptools_scm'],
