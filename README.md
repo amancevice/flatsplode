@@ -1,9 +1,10 @@
 # Flatsplode
 
-[![pytest](https://github.com/amancevice/flatsplode/workflows/pytest/badge.svg)](https://github.com/amancevice/flatsplode/actions)
-[![PyPI Version](https://badge.fury.io/py/flatsplode.svg)](https://badge.fury.io/py/flatsplode)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/974cfe08c8e29ab4d1d2/test_coverage)](https://codeclimate.com/github/amancevice/flatsplode/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/974cfe08c8e29ab4d1d2/maintainability)](https://codeclimate.com/github/amancevice/flatsplode/maintainability)
+![pypi](https://img.shields.io/pypi/v/flatsplode?color=yellow&logo=python&logoColor=eee&style=flat-square)
+![python](https://img.shields.io/pypi/pyversions/flatsplode?logo=python&logoColor=eee&style=flat-square)
+[![pytest](https://img.shields.io/github/workflow/status/amancevice/flatsplode/pytest?logo=github&style=flat-square)](https://github.com/amancevice/flatsplode/actions)
+[![coverage](https://img.shields.io/codeclimate/coverage/amancevice/flatsplode?logo=code-climate&style=flat-square)](https://codeclimate.com/github/amancevice/flatsplode/test_coverage)
+[![maintainability](https://img.shields.io/codeclimate/maintainability/amancevice/flatsplode?logo=code-climate&style=flat-square)](https://codeclimate.com/github/amancevice/flatsplode/maintainability)
 
 Flatten/Explode JSON objects.
 
