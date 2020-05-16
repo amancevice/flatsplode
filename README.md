@@ -1,6 +1,6 @@
 # Flatsplode
 
-[![Build Status](https://travis-ci.com/amancevice/flatsplode.svg?branch=master)](https://travis-ci.com/amancevice/flatsplode)
+[![pytest](https://github.com/amancevice/flatsplode/workflows/pytest/badge.svg)](https://github.com/amancevice/flatsplode/actions)
 [![PyPI Version](https://badge.fury.io/py/flatsplode.svg)](https://badge.fury.io/py/flatsplode)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/974cfe08c8e29ab4d1d2/test_coverage)](https://codeclimate.com/github/amancevice/flatsplode/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/974cfe08c8e29ab4d1d2/maintainability)](https://codeclimate.com/github/amancevice/flatsplode/maintainability)
