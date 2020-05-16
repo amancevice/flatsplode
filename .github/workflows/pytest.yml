@@ -34,7 +34,7 @@ jobs:
         with:
           command: before-build
 
-      - run: pip install flake8 pytest pytest-cov
+      - run: pip install . flake8 pytest pytest-cov
       - run: flake8
       - run: pytest
 
