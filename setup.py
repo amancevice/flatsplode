@@ -6,8 +6,7 @@ with open('README.md', 'r') as readme:
 
 setup(
     author='amancevice',
-    author_email='smallweirdnumber@gmail.com',
-    description='Flatten/explode JSON objects',
+    author_email='smallweirdnum@gmail.com',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -20,6 +19,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Topic :: Utilities',
     ],
+    description='Flatten/explode JSON objects',
     name='flatsplode',
     long_description=long_description,
     long_description_content_type='text/markdown',
