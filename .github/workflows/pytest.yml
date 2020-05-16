@@ -4,9 +4,9 @@ on:
   pull_request:
   push:
     branches:
-    - master
+      - master
   schedule:
-  - cron: "11 21 * * *"
+    - cron: "11 21 * * *"
 
 jobs:
   pytest:
@@ -14,32 +14,33 @@ jobs:
     strategy:
       matrix:
         python:
-        - 3.6.10
-        - 3.7.7
-        - 3.8.2
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
 
     steps:
 
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - uses: actions/setup-python@v1
-      with:
-        ruby-version: ${{ matrix.python }}
+      - uses: actions/setup-python@v1
+        with:
+          ruby-version: ${{ matrix.python }}
 
-    - name: Setup code climate
-      uses: amancevice/code-climate-action@v0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        command: before-build
+      - name: Setup code climate
+        uses: amancevice/code-climate-action@v0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          command: before-build
 
-    - run: pip install flake8 pytest pytest-cov
-    - run: flake8
-    - run: pytest
+      - run: pip install flake8 pytest pytest-cov
+      - run: flake8
+      - run: pytest
 
-    - name: Send coverage
-      uses: amancevice/code-climate-action@v0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        command: after-build
+      - name: Send coverage
+        uses: amancevice/code-climate-action@v0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          command: after-build
