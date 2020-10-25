@@ -90,6 +90,24 @@ list(flatsplode(item))
 ]
 ```
 
+You can also provide your own join-character:
+
+```python
+list(flatsplode(item, '/'))
+
+[
+    {
+        'id': '78e5b18c',
+        'keywords': 'fizz',
+        'attrs/name': 'color',
+        'attrs/value': 'green',
+        'deep/nested/keys/fizz': 'buzz',
+        'deep/nested/keys/jazz': 'fuzz'
+    },
+    …
+]
+```
+
 Flatsploding is useful when converting objects to pandas DataFrame matrices:
 
 ```python
