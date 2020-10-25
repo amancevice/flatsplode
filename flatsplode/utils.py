@@ -1,11 +1,9 @@
 """
 flatsplode utilities.
 """
-from __future__ import print_function
 import decimal
 import json
 from datetime import date
-from datetime import datetime
 
 
 def jprint(obj, **kwargs):
@@ -27,10 +25,8 @@ def jsonify(value):
         >>> jsonify(datetime(2018, 9, 1))
         >>> json.dumps({"time": datetime(2018, 9, 1)}, default=jsonify)
     """
-    if isinstance(value, datetime):
-        return value.isoformat()
     if isinstance(value, date):
-        return str(value)
+        return value.isoformat()
     if isinstance(value, decimal.Decimal):
         return float(value)
     raise TypeError
