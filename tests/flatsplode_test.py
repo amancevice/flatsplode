@@ -232,18 +232,4 @@ def test_flatten(item, join, exp):
 ])
 def test_flatsplode(item, exp):
     ret = list(flatsplode(item))
-    ret.sort(key=lambda x: (
-        x['jar'],
-        x['foo.fizz.array'],
-        x['foo.fizz.buzz'],
-        x['foo.fizz.jazz'],
-        x['foo.fizz.fuzz'],
-    ))
-    exp.sort(key=lambda x: (
-        x['jar'],
-        x['foo.fizz.array'],
-        x['foo.fizz.buzz'],
-        x['foo.fizz.jazz'],
-        x['foo.fizz.fuzz'],
-    ))
     assert ret == exp
