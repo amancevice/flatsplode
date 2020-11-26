@@ -69,12 +69,15 @@ def iterkv(item, parents=(), join='.'):
     for key, val in item.items():
         path = parents + (key,)     # Assemble path parts
         key = str.join(join, path)  # join path parts
-        val = val or None           # Yield None for empty nest
-
-        # Yield base case
-        if not isinstance(val, dict):
-            yield (key, val)
 
         # Recurse into nested dict
-        else:
+        if isinstance(val, dict) and any(val):
             yield from iterkv(val, path, join)
+
+        # Or `None` if empty dict
+        elif isinstance(val, dict):
+            yield (key, None)
+
+        # Otherwise, yield base case
+        else:
+            yield (key, val)

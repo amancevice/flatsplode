@@ -229,6 +229,16 @@ def test_flatten(item, join, exp):
             }
         ],
     ),
+    (
+        {'test': [0, 0.0, [], '', 123]},
+        [
+            {'test': 0},
+            {'test': 0.0},
+            {'test': []},
+            {'test': ''},
+            {'test': 123},
+        ]
+    )
 ])
 def test_flatsplode(item, exp):
     ret = list(flatsplode(item))
