@@ -2,10 +2,7 @@ import decimal
 import json
 from datetime import date
 from datetime import datetime
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from unittest import mock
 
 import pytest
 
