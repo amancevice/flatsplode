@@ -17,9 +17,9 @@ def explode(item):
     """
     # Collect item values that are lists/tuples
     lists = (
-        [(k, x) for x in v]
+        [(k, x) for x in v] if any(v) else [(k, None)]
         for k, v in item.items()
-        if isinstance(v, (list, tuple))
+        if isinstance(v, LIST_TYPES)
     )
     # Calculate combinations of values in each list
     combos = map(dict, itertools.product(*lists))
