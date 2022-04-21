@@ -7,7 +7,7 @@ clean:
 	rm -rf dist
 
 upload: $(SDIST)
-	twine upload $<
+	twine upload --repository flatsplode $<
 
 .PHONY: all clean upload
 
