@@ -7,13 +7,14 @@ LIST_TYPES = (list, tuple)
 
 
 def explode(item):
-    """ Explode JSON object with list values.
+    """
+    Explode JSON object with list values.
 
-        :param dict item: Object to explode
+    :param dict item: Object to explode
 
-        :Example:
+    :Example:
 
-        >>> explode({'fizz': ['buzz', 'jazz', 'fuzz']})
+    >>> explode({'fizz': ['buzz', 'jazz', 'fuzz']})
     """
     # Collect item values that are lists/tuples
     lists = (
@@ -31,13 +32,14 @@ def explode(item):
 
 
 def flatsplode(item, join='.'):
-    """ Explode & flatten JSON object with list values.
+    """
+    Explode & flatten JSON object with list values.
 
-        :param dict item: Object to explode
+    :param dict item: Object to explode
 
-        :Example:
+    :Example:
 
-        >>> flatsplode({'fizz': [{'key': buzz'}, {'key': 'jazz'}]})
+    >>> flatsplode({'fizz': [{'key': buzz'}, {'key': 'jazz'}]})
     """
     for expl in explode(item):
         flat = flatten(expl, join)
@@ -50,22 +52,24 @@ def flatsplode(item, join='.'):
 
 
 def flatten(item, join='.'):
-    """ Flattens nested JSON object.
+    """
+    Flattens nested JSON object.
 
-        :param dict item: Object to flatten
+    :param dict item: Object to flatten
 
-        :Example:
+    :Example:
 
-        >>> flatten({'fizz': {'buzz': {'jazz': 'fuzz'}}})
+    >>> flatten({'fizz': {'buzz': {'jazz': 'fuzz'}}})
     """
     return dict(iterkv(item, (), join))
 
 
 def iterkv(item, parents=(), join='.'):
-    """ Iterate over key/values of item recursively.
+    """
+    Iterate over key/values of item recursively.
 
-        :param dict item: Item to flatten
-        :param tuple parents: Running tuple of parent keys
+    :param dict item: Item to flatten
+    :param tuple parents: Running tuple of parent keys
     """
     for key, val in item.items():
         path = parents + (key,)     # Assemble path parts
