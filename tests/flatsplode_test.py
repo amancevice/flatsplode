@@ -252,11 +252,26 @@ def test_flatten(item, join, exp):
         [
             {'test': 0},
             {'test': 0.0},
-            {'test': []},
+            {'test': None},
             {'test': ''},
             {'test': 123},
         ]
-    )
+    ),
+    (
+        {
+            'id': '78e5b18c',
+            'attrs': [],
+            'keywords': [
+                {'fizz': ['fizza', 'fizzb']},
+                {'buzz': []}
+            ]
+        },
+        [
+            {'id': '78e5b18c', 'attrs': None, 'keywords.fizz': 'fizza'},
+            {'id': '78e5b18c', 'attrs': None, 'keywords.fizz': 'fizzb'},
+            {'id': '78e5b18c', 'attrs': None, 'keywords.buzz': None},
+        ]
+    ),
 ])
 def test_flatsplode(item, exp):
     ret = list(flatsplode(item))

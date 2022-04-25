@@ -42,8 +42,9 @@ def flatsplode(item, join='.'):
     for expl in explode(item):
         flat = flatten(expl, join)
         items = filter(lambda x: isinstance(x, LIST_TYPES), flat.values())
-        if any(items):
+        for item in items:
             yield from flatsplode(flat, join)
+            break
         else:
             yield flat
 
