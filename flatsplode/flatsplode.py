@@ -1,6 +1,8 @@
 """
 flatsplode.
 """
+__all__ = ['explode', 'flatten', 'flatsplode']
+
 import itertools
 
 LIST_TYPES = (list, tuple)
