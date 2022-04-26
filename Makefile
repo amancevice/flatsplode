@@ -1,21 +1,27 @@
 PYFILES := $(shell find flatsplode tests -name '*.py')
 SDIST   := dist/$(shell python setup.py --fullname 2> /dev/null).tar.gz
 
-all: $(SDIST)
+all: test
+
+build: $(SDIST)
 
 clean:
 	rm -rf dist
 
-upload: $(SDIST)
+test:
+	pipenv run pytest
+
+upload: build
+	git diff HEAD --quiet
 	twine upload $<
 
-.PHONY: all clean upload
+.PHONY: all build clean test upload
 
 $(SDIST): $(PYFILES) | .venv
-	git diff HEAD --quiet
 	pipenv run pytest
 	python setup.py sdist
 
 .venv: Pipfile
-	mkdir .venv
+	mkdir -p .venv
 	pipenv install --dev
+	touch .venv
