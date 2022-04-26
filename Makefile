@@ -1,5 +1,5 @@
 PYFILES := $(shell find flatsplode tests -name '*.py')
-SDIST   := dist/$(shell python setup.py --fullname).tar.gz
+SDIST   := dist/$(shell python setup.py --fullname 2> /dev/null).tar.gz
 
 all: $(SDIST)
 
@@ -11,9 +11,10 @@ upload: $(SDIST)
 
 .PHONY: all clean upload
 
-$(SDIST): $(PYFILES) Pipfile.lock
+$(SDIST): $(PYFILES) | .venv
 	pipenv run pytest
 	python setup.py sdist
 
-Pipfile.lock: Pipfile
+.venv: Pipfile
+	mkdir .venv
 	pipenv install --dev
