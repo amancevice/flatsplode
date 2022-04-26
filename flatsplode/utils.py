@@ -7,23 +7,23 @@ from datetime import date
 
 
 def jprint(obj, **kwargs):
-    """ Helper to print JSON. """
-    kwargs.setdefault('default', jsonify)
-    kwargs.setdefault('indent', 4)
-    kwargs.setdefault('sort_keys', True)
+    """Helper to print JSON."""
+    kwargs.setdefault("default", jsonify)
+    kwargs.setdefault("indent", 4)
+    kwargs.setdefault("sort_keys", True)
     print(json.dumps(obj, **kwargs))
 
 
 def jsonify(value):
-    """ Helper to JSON-dump datetimes.
+    """Helper to JSON-dump datetimes.
 
-        :param object value: Object to convert to JSON-friendly value
-        :returns: JSON-friendly value representation of object
+    :param object value: Object to convert to JSON-friendly value
+    :returns: JSON-friendly value representation of object
 
-        :Example:
+    :Example:
 
-        >>> jsonify(datetime(2018, 9, 1))
-        >>> json.dumps({"time": datetime(2018, 9, 1)}, default=jsonify)
+    >>> jsonify(datetime(2018, 9, 1))
+    >>> json.dumps({"time": datetime(2018, 9, 1)}, default=jsonify)
     """
     if isinstance(value, date):
         return value.isoformat()

@@ -7,8 +7,8 @@ name = "pypi"
 ipdb = "*"
 ipython = "*"
 pytest = "*"
+pytest-black = "*"
 pytest-cov = "*"
-pytest-flake8-v2 = "*"
 twine = "*"
 
 [packages]
