@@ -13,7 +13,7 @@ test:
 
 upload: build
 	git diff HEAD --quiet
-	twine upload $<
+	pipenv run twine upload $<
 
 .PHONY: all build clean test upload
 
