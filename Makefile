@@ -8,7 +8,7 @@ build: $(SDIST)
 clean:
 	rm -rf dist
 
-test:
+test: | .venv
 	pipenv run pytest
 
 upload: $(SDIST)
