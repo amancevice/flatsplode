@@ -11,7 +11,7 @@ clean:
 test:
 	pipenv run pytest
 
-upload: build
+upload: $(SDIST)
 	git diff HEAD --quiet
 	pipenv run twine upload $<
 
