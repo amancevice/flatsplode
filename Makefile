@@ -1,7 +1,7 @@
 PYFILES := $(shell find flatsplode tests -name '*.py')
-SDIST   := dist/$(shell pipenv run python -m flatsplode --fullname).tar.gz
+SDIST   := dist/flatsplode-$(shell pipenv run python -m flatsplode --version).tar.gz
 
-all: test
+all: build
 
 build: $(SDIST)
 
