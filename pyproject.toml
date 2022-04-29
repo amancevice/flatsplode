@@ -32,7 +32,7 @@ test = [
 ]
 
 [project.scripts]
-flatsplode = "flatsplode:__main__"
+flatsplode = "flatsplode:__main__.main"
 
 [project.urls]
 Home = "https://github.com/amancevice/flatsplode"

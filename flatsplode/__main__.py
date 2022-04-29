@@ -7,25 +7,7 @@ from . import __version__
 from .flatsplode import (explode, flatten, flatsplode)
 
 
-def main(args):
-    if args.JSON == '-':  # pragma: no cover
-        stream = sys.stdin
-    else:
-        stream = io.StringIO(args.JSON)
-
-    if args.no_explode and args.no_flatten:
-        item = json.load(stream)
-    elif args.no_explode:
-        item = dict(flatten(json.load(stream)))
-    elif args.no_flatten:
-        item = list(explode(json.load(stream)))
-    else:
-        item = list(flatsplode(json.load(stream)))
-
-    return item
-
-
-if __name__ == '__main__':  # pragma: no cover
+def get_args():  # pragma: no cover
     parser = argparse.ArgumentParser(
         description='Flatten/explode JSON objects',
         prog='flatsplode',
@@ -43,5 +25,29 @@ if __name__ == '__main__':  # pragma: no cover
         action='store_true',
         help='Do not explode')
     parser.add_argument('JSON', help='Item JSON')
-    args = parser.parse_args()
-    json.dump(main(args), sys.stdout)
+    return parser.parse_args()
+
+
+def main(args=None):
+    args = args or get_args()
+    if args.JSON == '-':  # pragma: no cover
+        stream = sys.stdin
+    else:
+        stream = io.StringIO(args.JSON)
+
+    if args.no_explode and args.no_flatten:
+        item = json.load(stream)
+    elif args.no_explode:
+        item = dict(flatten(json.load(stream)))
+    elif args.no_flatten:
+        item = list(explode(json.load(stream)))
+    else:
+        item = list(flatsplode(json.load(stream)))
+
+    json.dump(item, sys.stdout)
+
+    return item
+
+
+if __name__ == '__main__':  # pragma: no cover
+    main()
