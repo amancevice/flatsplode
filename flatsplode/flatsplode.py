@@ -1,7 +1,7 @@
 """
 flatsplode.
 """
-__all__ = ['explode', 'flatten', 'flatsplode']
+__all__ = ["explode", "flatten", "flatsplode"]
 
 import itertools
 
@@ -33,7 +33,7 @@ def explode(item):
         yield xitem
 
 
-def flatsplode(item, join='.'):
+def flatsplode(item, join="."):
     """
     Explode & flatten JSON object with list values.
 
@@ -53,7 +53,7 @@ def flatsplode(item, join='.'):
             yield flat
 
 
-def flatten(item, join='.'):
+def flatten(item, join="."):
     """
     Flattens nested JSON object.
 
@@ -66,7 +66,7 @@ def flatten(item, join='.'):
     return dict(iterkv(item, (), join))
 
 
-def iterkv(item, parents=(), join='.'):
+def iterkv(item, parents=(), join="."):
     """
     Iterate over key/values of item recursively.
 
@@ -74,7 +74,7 @@ def iterkv(item, parents=(), join='.'):
     :param tuple parents: Running tuple of parent keys
     """
     for key, val in item.items():
-        path = parents + (key,)     # Assemble path parts
+        path = parents + (key,)  # Assemble path parts
         key = str.join(join, path)  # join path parts
 
         # Recurse into nested dict

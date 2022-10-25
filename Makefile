@@ -1,7 +1,6 @@
-PYFILES := $(shell find flatsplode tests -name '*.py')
-SDIST   := dist/flatsplode-$(shell pipenv run python -m flatsplode --version).tar.gz
+SDIST := dist/flatsplode-$(shell pipenv run python -m flatsplode --version).tar.gz
 
-all: build
+all: build test
 
 build: $(SDIST)
 
@@ -9,6 +8,7 @@ clean:
 	rm -rf dist
 
 test: | .venv
+	pipenv run black --check flatsplode tests
 	pipenv run pytest
 
 publish: $(SDIST)
@@ -17,7 +17,7 @@ publish: $(SDIST)
 
 .PHONY: all build clean test upload
 
-$(SDIST): $(PYFILES) | .venv
+$(SDIST): **/*.py | .venv
 	pipenv run pytest
 	pipenv run flit build
 

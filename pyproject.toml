@@ -37,7 +37,6 @@ flatsplode = "flatsplode:__main__.main"
 [project.urls]
 Home = "https://github.com/amancevice/flatsplode"
 
-
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts    = "--flake8 --cov flatsplode --cov tests --cov-report term-missing --cov-report xml"
+addopts    = "--cov flatsplode --cov tests --cov-report term-missing --cov-report xml"
