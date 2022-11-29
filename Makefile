@@ -1,4 +1,4 @@
-all: build test
+all: test build
 
 build: .venv
 	pipenv run flit build
@@ -6,15 +6,18 @@ build: .venv
 clean:
 	rm -rf dist
 
-test: .venv
-	pipenv run black --check $(shell basename $$PWD) tests
-	pipenv run pytest
+ipython:
+	pipenv run ipython
 
 publish: build test
 	git diff HEAD --quiet
 	pipenv run flit publish
 
-.PHONY: all build clean test publish
+test: .venv
+	pipenv run black --check flatsplode tests
+	pipenv run pytest
+
+.PHONY: all build clean ipython publish test
 
 Pipfile.lock: Pipfile
 .venv: Pipfile.lock
