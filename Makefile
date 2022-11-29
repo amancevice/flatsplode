@@ -19,8 +19,7 @@ test: .venv
 
 .PHONY: all build clean ipython publish test
 
-Pipfile.lock: Pipfile
-.venv: Pipfile.lock
-	mkdir -p $@
+Pipfile.lock .venv: Pipfile
+	mkdir -p .venv
 	pipenv install --dev
-	touch $@
+	touch .venv
