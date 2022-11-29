@@ -9,7 +9,7 @@ clean:
 ipython:
 	pipenv run ipython
 
-publish: build test
+publish: test build
 	git diff HEAD --quiet
 	pipenv run flit publish
 
