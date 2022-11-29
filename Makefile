@@ -1,27 +1,23 @@
-SDIST := dist/flatsplode-$(shell pipenv run python -m flatsplode --version).tar.gz
-
 all: build test
 
-build: $(SDIST)
+build: .venv
+	pipenv run flit build
 
 clean:
 	rm -rf dist
 
-test: | .venv
-	pipenv run black --check flatsplode tests
+test: .venv
+	pipenv run black --check $(shell basename $$PWD) tests
 	pipenv run pytest
 
-publish: $(SDIST)
+publish: build test
 	git diff HEAD --quiet
 	pipenv run flit publish
 
-.PHONY: all build clean test upload
+.PHONY: all build clean test publish
 
-$(SDIST): **/*.py | .venv
-	pipenv run pytest
-	pipenv run flit build
-
-.venv: Pipfile
-	mkdir -p .venv
+Pipfile.lock: Pipfile
+.venv: Pipfile.lock
+	mkdir -p $@
 	pipenv install --dev
-	touch .venv
+	touch $@
