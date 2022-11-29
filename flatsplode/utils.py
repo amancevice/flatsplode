@@ -8,10 +8,8 @@ from datetime import date
 
 def jprint(obj, **kwargs):
     """Helper to print JSON."""
-    kwargs.setdefault("default", jsonify)
-    kwargs.setdefault("indent", 4)
-    kwargs.setdefault("sort_keys", True)
-    print(json.dumps(obj, **kwargs))
+    params = {"default": jsonify, "indent": 4, "sort_keys": True, **kwargs}
+    print(json.dumps(obj, **params))
 
 
 def jsonify(value):

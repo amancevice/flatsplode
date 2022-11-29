@@ -13,7 +13,7 @@ def get_args():  # pragma: no cover
         prog="flatsplode",
         usage="%(prog)s [OPTIONS] [JSON]",
     )
-    parser.add_argument("-V", "--version", action="version", version=__version__)
+    parser.add_argument("-v", "--version", action="version", version=__version__)
     parser.add_argument(
         "-F", "--no-flatten", action="store_true", help="Do not flatten"
     )
