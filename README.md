@@ -50,7 +50,6 @@ item = {
 
 Calling `flatsplode(item)` will return a generator. Use `list()` to expand:
 
-
 ```python
 list(flatsplode(item))
 
@@ -114,10 +113,20 @@ Flatsploding is useful when converting objects to pandas DataFrame matrices:
 import pandas
 from flatsplode import flatsplode
 
-pandas.DataFrame(list(flatsplode(item)))
+pandas.DataFrame(flatsplode(item))
 ```
 
+Pandas also has a built in normalizer that will flatten (not not explode) your data:
+
+```python
+from flatsplode import explode
+
+pandas.json_normalize(explode(item))
 ```
+
+Result:
+
+```plaintext
          id attrs.name attrs.value deep.nested.keys.fizz deep.nested.keys.jazz keywords
 0  78e5b18c      color       green                  buzz                  fuzz     fizz
 1  78e5b18c       size          42                  buzz                  fuzz     fizz
