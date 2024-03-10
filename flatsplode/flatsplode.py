@@ -1,6 +1,7 @@
 """
 flatsplode.
 """
+
 __all__ = ["explode", "flatten", "flatsplode"]
 
 import itertools

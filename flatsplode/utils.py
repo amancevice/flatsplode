@@ -1,6 +1,7 @@
 """
 flatsplode utilities.
 """
+
 import decimal
 import json
 from datetime import date
