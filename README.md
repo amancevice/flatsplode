@@ -116,7 +116,7 @@ from flatsplode import flatsplode
 pandas.DataFrame(flatsplode(item))
 ```
 
-Pandas also has a built in normalizer that will flatten (not not explode) your data:
+Pandas also has a built in normalizer that will flatten (but not explode) your data:
 
 ```python
 from flatsplode import explode
