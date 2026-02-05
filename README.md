@@ -3,8 +3,6 @@
 [![pypi](https://img.shields.io/pypi/v/flatsplode?color=yellow&logo=python&logoColor=eee&style=flat-square)](https://pypi.org/project/flatsplode/)
 [![python](https://img.shields.io/pypi/pyversions/flatsplode?logo=python&logoColor=eee&style=flat-square)](https://pypi.org/project/flatsplode/)
 [![pytest](https://img.shields.io/github/actions/workflow/status/amancevice/flatsplode/pytest.yml?logo=github&style=flat-square)](https://github.com/amancevice/flatsplode/actions/workflows/pytest.yml)
-[![coverage](https://img.shields.io/codeclimate/coverage/amancevice/flatsplode?logo=code-climate&style=flat-square)](https://codeclimate.com/github/amancevice/flatsplode/test_coverage)
-[![maintainability](https://img.shields.io/codeclimate/maintainability/amancevice/flatsplode?logo=code-climate&style=flat-square)](https://codeclimate.com/github/amancevice/flatsplode/maintainability)
 
 Flatten/Explode JSON objects.
 
