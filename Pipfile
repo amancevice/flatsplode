@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-black = "*"
 flit = "*"
 ipdb = "*"
 ipython = "*"
 pytest = "*"
 pytest-cov = "*"
+ruff = "*"
 
 [packages]

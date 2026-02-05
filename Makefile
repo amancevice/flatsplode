@@ -14,7 +14,7 @@ publish: test build
 	pipenv run flit publish
 
 test: .venv
-	pipenv run black --check flatsplode tests
+	pipenv run ruff check flatsplode tests
 	pipenv run pytest
 
 .PHONY: all build clean ipython publish test
